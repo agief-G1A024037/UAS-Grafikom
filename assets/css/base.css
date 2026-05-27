@@ -1,0 +1,19 @@
+/* ═══════════════════════════════════════════
+   ROSÉ AR KEYCHAIN — Base & Reset
+   ═══════════════════════════════════════════ */
+
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Base ── */
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Outfit', 'Segoe UI', sans-serif;
+  background: #0d0010;
+  -webkit-tap-highlight-color: transparent;
+}

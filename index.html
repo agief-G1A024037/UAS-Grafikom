@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#1a0010">
+    <meta name="description" content="Saturn AR Keychain – Scan marker dan nikmati pengalaman AR interaktif planet Saturnus.">
+
+    <title>Saturn AR Keychain 🪐</title>
+
+    <!-- A-Frame (core 3D/WebGL engine) -->
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <!-- AR.js (stable, versioned) -->
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.4.5/aframe/build/aframe-ar.js"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- App Stylesheets -->
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/loading.css">
+    <link rel="stylesheet" href="assets/css/ui.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+  </head>
+
+  <body>
+
+    <!-- ══ A-FRAME AR SCENE ══ -->
+    <a-scene
+      embedded
+      arjs="sourceType: webcam; debugUIEnabled: false; detectionMode: mono; patternRatio: 0.75;"
+      renderer="logarithmicDepthBuffer: true; antialias: true; colorManagement: true;"
+      vr-mode-ui="enabled: false"
+      loading-screen="enabled: false"
+    >
+
+      <!-- Assets: audio di-load lazy (preload none) agar tidak block loading scene -->
+      <a-assets timeout="10000">
+        <img   id="rose-img"  src="rose.jpg"            crossorigin="anonymous">
+        <audio id="bg-music"  src="number-one-girl.mp3" preload="none"></audio>
+      </a-assets>
+
+      <!-- Marker: patternRatio 0.75 lebih toleran untuk scan dari layar digital -->
+      <a-marker
+        type="pattern"
+        url="pattern-Saturn_during_Equinox.patt"
+        id="saturn-marker"
+        smooth="true"
+        smoothCount="10"
+        smoothTolerance="0.01"
+        smoothThreshold="5"
+        emitevents="true"
+      >
+
+        <!-- 3D Saturn -->
+        <a-entity
+          position="0 0.7 0"
+          animation__appear="property: scale; from: 0.01 0.01 0.01; to: 1 1 1;
+                              dur: 500; easing: easeOutBack; startEvents: markerFound"
+          animation__vanish="property: scale; to: 0.01 0.01 0.01;
+                              dur: 300; easing: easeInBack; startEvents: markerLost"
+          animation__rotate="property: rotation; to: 0 360 0; dur: 15000; loop: true; easing: linear">
+          
+          <!-- Planet Sphere -->
+          <a-sphere color="#e2bf7d" radius="0.5"></a-sphere>
+          
+          <!-- Saturn Rings -->
+          <!-- Ring 1 -->
+          <a-ring color="#c9a56d" radius-inner="0.7" radius-outer="1.1" rotation="-70 0 0" opacity="0.9" material="side: double"></a-ring>
+          <!-- Ring 2 -->
+          <a-ring color="#a88550" radius-inner="1.15" radius-outer="1.3" rotation="-70 0 0" opacity="0.7" material="side: double"></a-ring>
+        </a-entity>
+
+        <!-- Lingkaran glow di bawah gambar -->
+        <a-circle
+          color="#ff6b9d"
+          opacity="0.2"
+          radius="0.72"
+          position="0 0.01 0"
+          rotation="-90 0 0"
+          animation__pulse="property: opacity; from: 0.08; to: 0.32;
+                             dur: 1400; dir: alternate; loop: true; easing: easeInOutSine"
+          animation__rot="property: rotation; to: -90 360 0;
+                          dur: 12000; loop: true; easing: linear">
+        </a-circle>
+
+        <!-- Ring dekorasi luar -->
+        <a-ring
+          color="#ffb6c1"
+          opacity="0.15"
+          radius-inner="0.78"
+          radius-outer="0.85"
+          position="0 0.01 0"
+          rotation="-90 0 0"
+          animation__rot="property: rotation; to: -90 -360 0;
+                          dur: 18000; loop: true; easing: linear">
+        </a-ring>
+
+      </a-marker>
+
+      <a-entity camera></a-entity>
+    </a-scene>
+
+    <!--
+      Partials Loader:
+      1. Fetch partials/overlays.html → inject UI overlay divs sebelum <a-scene>
+      2. Load app scripts berurutan: dom.js → loader.js → ar.js
+    -->
+    <script src="assets/js/partials.js"></script>
+
+  </body>
+</html>

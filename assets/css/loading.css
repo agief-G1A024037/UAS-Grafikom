@@ -1,0 +1,122 @@
+/* ═══════════════════════════════════════════
+   ROSÉ AR KEYCHAIN — Loading & Error Screens
+   ═══════════════════════════════════════════ */
+
+/* ════════════════════════════════
+   LOADING SCREEN
+   ════════════════════════════════ */
+#loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: linear-gradient(135deg, #1a0010 0%, #2d0020 50%, #1a0010 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+#loading-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loading-logo {
+  font-size: 3.5rem;
+  animation: pulse-glow 1.8s ease-in-out infinite;
+}
+
+.loading-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.05em;
+}
+
+.loading-subtitle {
+  font-size: 0.82rem;
+  color: rgba(255, 182, 193, 0.7);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.loading-bar-wrap {
+  width: 200px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.loading-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #ff6b9d, #ffb6c1, #ff6b9d);
+  background-size: 200%;
+  border-radius: 99px;
+  animation: shimmer 1.5s linear infinite;
+  transition: width 0.4s ease;
+}
+
+/* ════════════════════════════════
+   CAMERA ERROR SCREEN
+   ════════════════════════════════ */
+#camera-error {
+  position: fixed;
+  inset: 0;
+  z-index: 8888;
+  background: linear-gradient(135deg, #1a0010, #2d0020);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 40px 32px;
+  text-align: center;
+}
+
+#camera-error.show {
+  display: flex;
+}
+
+.err-icon { font-size: 3.5rem; }
+
+#camera-error h2 {
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+#camera-error p {
+  color: rgba(255, 182, 193, 0.8);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  max-width: 300px;
+}
+
+#camera-error p strong {
+  color: #ffb6c1;
+}
+
+.retry-btn {
+  margin-top: 8px;
+  padding: 13px 32px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #ff6b9d, #ff3366);
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 24px rgba(255, 107, 157, 0.45);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.retry-btn:hover  { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(255, 107, 157, 0.55); }
+.retry-btn:active { transform: scale(0.96); }

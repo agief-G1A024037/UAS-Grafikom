@@ -1,0 +1,148 @@
+/* ═══════════════════════════════════════════
+   ROSÉ AR KEYCHAIN — UI Overlays
+   ═══════════════════════════════════════════ */
+
+/* ════════════════════════════════
+   INSTRUCTION BADGE
+   ════════════════════════════════ */
+#ar-instruction {
+  position: fixed;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 22px;
+  border-radius: 30px;
+  background: rgba(255, 182, 193, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: #3d0020;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow:
+    0 4px 20px rgba(255, 107, 157, 0.35),
+    inset 0 0 0 1.5px rgba(255,255,255,0.35);
+  transition: background 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+}
+
+#ar-instruction.detected {
+  background: rgba(52, 211, 130, 0.92);
+  color: #003d1a;
+  box-shadow:
+    0 4px 20px rgba(52, 211, 130, 0.4),
+    inset 0 0 0 1.5px rgba(255,255,255,0.35);
+}
+
+#ar-instruction.playing {
+  background: rgba(139, 92, 246, 0.92);
+  color: #f5f0ff;
+  box-shadow:
+    0 4px 20px rgba(139, 92, 246, 0.4),
+    inset 0 0 0 1.5px rgba(255,255,255,0.35);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ff3366;
+  flex-shrink: 0;
+  animation: blink 1.2s ease-in-out infinite;
+}
+
+#ar-instruction.detected .dot {
+  background: #00aa55;
+  animation: none;
+}
+
+#ar-instruction.playing .dot {
+  background: #c4b5fd;
+  animation: blink 0.6s ease-in-out infinite;
+}
+
+/* ════════════════════════════════
+   MUSIC STATUS BADGE
+   ════════════════════════════════ */
+#music-status {
+  position: fixed;
+  top: 20px;
+  right: 16px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: 20px;
+  background: rgba(20, 0, 30, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 107, 157, 0.35);
+  color: rgba(255, 182, 193, 0.95);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+#music-status.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Music Equalizer Bars ── */
+.music-bars {
+  display: flex;
+  gap: 3px;
+  align-items: flex-end;
+  height: 14px;
+}
+
+.music-bars span {
+  display: block;
+  width: 3px;
+  background: #ff6b9d;
+  border-radius: 2px;
+  animation: eq 0.8s ease-in-out infinite;
+}
+
+.music-bars span:nth-child(1) { animation-delay: 0s;    animation-duration: 0.65s; }
+.music-bars span:nth-child(2) { animation-delay: 0.15s; animation-duration: 0.85s; }
+.music-bars span:nth-child(3) { animation-delay: 0.3s;  animation-duration: 0.6s;  }
+
+/* ════════════════════════════════
+   MARKER HINT OVERLAY (pojok kiri atas)
+   ════════════════════════════════ */
+#marker-hint {
+  position: fixed;
+  top: 20px;
+  left: 16px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 16px;
+  background: rgba(20, 0, 30, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 107, 157, 0.2);
+  color: rgba(255, 182, 193, 0.7);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+#marker-hint.hidden {
+  opacity: 0;
+}
