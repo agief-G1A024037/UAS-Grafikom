@@ -41,7 +41,7 @@
 
       <!-- Assets: audio di-load lazy (preload none) agar tidak block loading scene -->
       <a-assets timeout="10000">
-        <img   id="rose-img"  src="rose.jpg"            crossorigin="anonymous">
+        <img   id="saturn-texture" src="Saturn_during_Equinox.jpg" crossorigin="anonymous">
         <audio id="bg-music"  src="number-one-girl.mp3" preload="none"></audio>
       </a-assets>
 
@@ -67,7 +67,7 @@
           animation__rotate="property: rotation; to: 0 360 0; dur: 15000; loop: true; easing: linear">
           
           <!-- Planet Sphere -->
-          <a-sphere color="#e2bf7d" radius="0.5"></a-sphere>
+          <a-sphere src="#saturn-texture" radius="0.5"></a-sphere>
           
           <!-- Saturn Rings -->
           <!-- Ring 1 -->
